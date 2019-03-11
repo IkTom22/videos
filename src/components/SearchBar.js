@@ -1,32 +1,36 @@
 import React from 'react';
 
 class SearchBar extends React.Component {
-    state = { term: '' }
-
+    state = { term: '' };
     onInputChange = (event) => {
+        // event.target.value is the text that user just typed
         this.setState({ term: event.target.value });
-    };
+    }
 
-    onFormSubmit = (event) => {
-        event.preventDefault();
-        // toDo: Make sure we call callback from parent component
+    onFormSubmit = (e) => {
+        e.preventDefault();
+        console.log(this.state.term);
+        //TODO: Make sure we call
+        // callback form parent component
     }
 
     render() {
         return (
             <div className="search-bar ui segment">
-                {/* everytime someone submits the form, onfORMsUBMIT callback happens */}
                 <form onSubmit={this.onFormSubmit} className="ui form">
                     <div className="field">
                         <label>Video Search</label>
                         <input
-                            type="text" value={this.state.term}
+                            type="text"
+                            value={this.state.term}
+                            // add new prop 'onChange' to set the call back 
                             onChange={this.onInputChange}
                         />
+
                     </div>
                 </form>
+            </div>
 
-            </div >
         );
     }
 }
