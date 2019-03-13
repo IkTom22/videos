@@ -5,7 +5,7 @@ import VideoList from './VideoList';
 
 class App extends React.Component {
 
-    state = { videos: [] }
+    state = { videos: [], selectedVideo: null }
 
     // it's either 'async const response = await ..' method ot fetch method
     onTermSubmit = async (term) => {
@@ -19,11 +19,15 @@ class App extends React.Component {
         // of all the response fdata I get, I only need response.data.items
         this.setState({ videos: response.data.items });
     };
+    // selected video item
+    onVideoSelect = (video) => {
+        console.log('From the App!', video)
+    }
     render() {
         return (
             <div className="ui container">
                 <SearchBar onTermSubmit={this.onTermSubmit} />
-                I have {this.state.videos.length} videos.
+                <VideoList onVideoSelect={this.onVideoSelect} videos={this.state.videos} />
 
             </div>
         );
